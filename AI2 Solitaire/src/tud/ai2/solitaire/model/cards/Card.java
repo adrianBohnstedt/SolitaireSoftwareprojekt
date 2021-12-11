@@ -9,21 +9,32 @@ public class Card extends AbstractCard{
 	private Suit suit; 
 	private CardValue cardValue; 
 	private boolean direction; 
-	private BufferedImage image;
+	private BufferedImage frontImage;
 	
-	public Card (Suit suit, CardValue cardValue) {
+	/**
+	 * 
+	 * @param suit
+	 * @param cardValue
+	 */
+	
+public Card (Suit suit, CardValue cardValue) {
 		
+		super();
 		this.suit = suit; 
 		this.cardValue = cardValue; 
+		direction = false;
+		
 	}
+	
+	
 	@Override
 	public Suit getSuit() {
-		// TODO Auto-generated method stub
+		
 		return suit;
 	}
 	@Override
 	public CardValue getValue() {
-		// TODO Auto-generated method stub
+		
 		return cardValue;
 	}
 	@Override
@@ -45,7 +56,7 @@ public class Card extends AbstractCard{
 	}
 	@Override
 	public void setRevealed(boolean revealed) {
-		// TODO Auto-generated method stub
+		
 		direction = revealed; 
 	}
 	@Override
@@ -55,18 +66,28 @@ public class Card extends AbstractCard{
 	}
 	@Override
 	public BufferedImage getFrontImage() {
-		// TODO Auto-generated method stub
-		return image;
+		
+		return frontImage;
 	} 
 	@Override
 	public boolean equals(Object o) {
 		
-		if (this.getSuit() = o.getSuit() && this.getValue() == o.getValue()) {
-			return true;
-		} else {
-			return false; 
-			
+		if (o == this) {
+			return true; 
 		}
+		if (!(o instanceof Card)) {
+			return false; 
+		}
+		Card c = (Card) o; 
+		
+		return (this.suit == c.getSuit()) && (this.cardValue == c.getValue());
+		
+		//if (this.getSuit() = o.getSuit() && this.getValue() == o.getValue()) {
+		//	return true;
+		//} else {
+		//	return false; 
+		//	
+		
 		
 	}
 
