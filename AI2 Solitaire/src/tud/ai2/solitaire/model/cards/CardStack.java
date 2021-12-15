@@ -1,49 +1,49 @@
 package tud.ai2.solitaire.model.cards;
+//import java.util.A
 
 public class CardStack extends AbstractCardStack {
 
     private static int MAX_STACK = 13;
-    private AbstracdCard[] a;
-    private int N=0;
+    private AbstractCard[] a = new AbstractCard [MAX_STACK];
+    private int N = 0;
     
-    public ArrayStackOfCards (int b = 13) {
-        a = new AbstractCard [b];
-    }
+   
+
 
     public void push(AbstractCard cc) {
     	
-    	if(a.size<13) {
+    	if(a.length<13) {
     	    a[N]=cc;
     	    ++N;
         }
     }
 
     public AbstractCard pop() {
-    	if(a.size!=0) {
-    		AbstractCard c = a[a.size-1];
-    		this.a.remove(a.size-1);
+    	if(a.length!=0) {
+    		AbstractCard c = a[a.length-1];
+    		this.remove(a.length-1);
     	}
-    	return c
+    	return c;
     
     }
 
     public AbstractCard peek() {
-    	if(a.size>0) {
-    		return a[a.size-1]
+    	if(a.length>0) {
+    		return a[a.length-1];
     	}
     	return null;
     }  
     
     public int size() {
-    	return a.size;
+    	return a.length;
     }
     
     public boolean isFull() {
-    	return a.size == 13
+    	return a.length == MAX_STACK;
     }
     
     public boolean isEmpty() {
-    	return a.size == 0
+    	return a.length == 0;
     }
     
 }
