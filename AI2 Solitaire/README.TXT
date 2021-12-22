@@ -12,5 +12,5 @@ TU-ID: ab62tete
 Student 2 Information:
 
 Full Name: Maximilian Mitschke
-Matriculation Number:
-TU-ID:
+Matriculation Number: 2333885
+TU-ID: mm80gusi
