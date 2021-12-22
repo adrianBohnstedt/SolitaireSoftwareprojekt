@@ -2,6 +2,7 @@ package tud.ai2.solitaire.model.cards;
 
 import tud.ai2.solitaire.exceptions.ResourceNotFoundException;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -23,23 +24,66 @@ import static tud.ai2.solitaire.util.Const.CARD_COUNT;
 
 public class Deck {
 
-    public int cutPoint = -1;
+    public int cutPoint ;
     private List<AbstractCard> cards;
     private static final Random rand = new Random();
 
     //TODO task 2a)
+    /**
+     * 
+     */
     public Deck() {
 
+    	for (Suit s : Suit.values()) {
+    		for (CardValue w : CardValue.values()) {
+    			cards.add(new Card(s,w)); 
+    		}
+    	}
+    
     }
-
+    
     //TODO task 2c)
     public void riffle(int iterations) {
-
+    	
+    	for (int i = 0; i < iterations; i++) {
+    	List<AbstractCard> l = new ArrayList<AbstractCard>(); 
+    	List<AbstractCard> r = new ArrayList<AbstractCard>(); 
+    	
+    	cutPoint = (int) ((Math.random() * 11) + 22); //cutPoint ist die erste Karte des rechten Stapels
+    	
+    	l = cards.subList(0 , cutPoint - 1 );
+    	r = cards.subList(cutPoint , 52); 
+    	
+    	riffleMerge(l, r);
+    	
+    	//cards = n; 
+    	}
     }
 
     //TODO task 2b)
     public static List<AbstractCard> riffleMerge(List<AbstractCard> left, List<AbstractCard> right) {
-        return null;
+    	List<AbstractCard> l = left;
+    	List<AbstractCard> r = right;
+    	
+    	List<AbstractCard> n = new ArrayList<AbstractCard>(52);
+    	
+    	for (int i = 0; i < n.size() ; i++) {
+    		
+    		Random mn = new Random();
+    		double z = mn.nextDouble();
+    		double cl = (l.size()/(l.size() + r.size()));
+    		
+    		if (z <= cl) {
+    			n.add(l.get(0));
+    			l.remove(0);
+    		}
+    		else {
+    			n.add(r.get(0));
+    			r.remove(0);
+    		}
+    	}
+    	
+        return n;
     }
 
     public List<AbstractCard> getCards() {
