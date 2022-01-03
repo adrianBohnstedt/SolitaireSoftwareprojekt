@@ -70,8 +70,8 @@ public Card (Suit suit, CardValue cardValue) {
 	 */
 	@Override
 	public void setFrontImage(String basePath) throws ResourceNotFoundException {
-		// TODO Auto-generated method stub
 		File basePathFile = new File(basePath + "/" + suit + "/" + cardValue + ".png");
+		//setting the front image
 		try {
 			frontImage = ImageIO.read(basePathFile);
 		} catch (IOException e) {
