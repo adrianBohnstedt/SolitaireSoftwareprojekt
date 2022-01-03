@@ -3,6 +3,8 @@ package tud.ai2.solitaire.view;
 import edu.princeton.cs.introcs.Out;
 import edu.princeton.cs.introcs.StdIn;
 import tud.ai2.solitaire.model.HighscoreEntry;
+import tud.ai2.solitaire.model.comparator.ScoreComparator;
+import tud.ai2.solitaire.model.comparator.TimeComparator;
 import tud.ai2.solitaire.util.Const;
 
 import javax.swing.JFrame;
@@ -19,6 +21,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -72,8 +75,12 @@ public class HighScoreFrame extends JFrame{
                 int col = highscoreTable.columnAtPoint(e.getPoint());
                 //TODO begin task 5b)
                 //----------------------- Comparator Aufgabe -----------------------------------------------------------------------
-
-
+                if(col == 1)
+                	//sort by time
+                	Collections.sort(highScoreEntries, new TimeComparator());
+                if(col == 2)
+                	//sort by score
+                	Collections.sort(highScoreEntries, new ScoreComparator());
                 //----------------------- Ende Comparator Aufgabe -------------------------------------------------------------------
                 model.setDataVector(feedingShowingTable(highScoreEntries), colums);
             }
