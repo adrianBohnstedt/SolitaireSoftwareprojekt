@@ -1,6 +1,10 @@
 package tud.ai2.solitaire.model.cards;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import tud.ai2.solitaire.exceptions.ResourceNotFoundException;
 
@@ -59,9 +63,20 @@ public Card (Suit suit, CardValue cardValue) {
 		
 		direction = revealed; 
 	}
+	/**
+	 * Sets the front image to the image found in the base path file
+	 * 
+	 * @param basePath the basePath of the file
+	 */
 	@Override
 	public void setFrontImage(String basePath) throws ResourceNotFoundException {
 		// TODO Auto-generated method stub
+		File basePathFile = new File(basePath + "/" + suit + "/" + cardValue + ".png");
+		try {
+			frontImage = ImageIO.read(basePathFile);
+		} catch (IOException e) {
+			throw new ResourceNotFoundException(basePath);
+		}
 		
 	}
 	@Override
