@@ -49,44 +49,37 @@ public class Deck {
     	List<AbstractCard> l = new ArrayList<AbstractCard>(); 
     	List<AbstractCard> r = new ArrayList<AbstractCard>(); 
     	
-    	cutPoint = (int) ((Math.random() * 11) + 21); //cutPoint ist die erste Karte des rechten Stapels
+    	cutPoint = (int) ((Math.random() * 11) + 22); //cutPoint ist die erste Karte des rechten Stapels
     	
     	l = cards.subList(0 , cutPoint - 1 );
-    	r = cards.subList(cutPoint , 51); 
+    	r = cards.subList(cutPoint , 52); 
     	
-    	riffleMerge(l, r); // neue Variable?
+    	riffleMerge(l, r);
     	
-    	cards = riffleMerge(l, r); 
-    	// hier muessen noch die Stapel ueberschrieben werden
+    	//cards = n; 
     	}
     }
 
     //TODO task 2b)
-    /**
-     * Methode, welche aus zwei Stapeln einen neuen Stapel mischt 
-     * @param left linker Stapel
-     * @param right rechter Stapel 
-     * @return n neuer gemischter Stapel 
-     */
     public static List<AbstractCard> riffleMerge(List<AbstractCard> left, List<AbstractCard> right) {
-    	List<AbstractCard> l = left; //dynamisch?
+    	List<AbstractCard> l = left;
     	List<AbstractCard> r = right;
     	
-    	List<AbstractCard> n = new ArrayList<AbstractCard>();
+    	List<AbstractCard> n = new ArrayList<AbstractCard>(52);
     	
-    	while (!l.isEmpty() || !r.isEmpty()) {
+    	for (int i = 0; i < n.size() ; i++) {
     		
     		Random mn = new Random();
-    		double z = mn.nextDouble(); //Zufallszahl
-    		double cl = (l.size()/(l.size() + r.size())); //Chance die unterste Karte des linken Stapels auszuwaehlen //Exception?? //zusaetliche Bedingung??
+    		double z = mn.nextDouble();
+    		double cl = (l.size()/(l.size() + r.size()));
     		
-    		if (z < cl) {
-    			n.add(l.get(l.size()-1)); // 
-    			l.remove(l.size()-1);	//
+    		if (z <= cl) {
+    			n.add(l.get(0));
+    			l.remove(0);
     		}
     		else {
-    			n.add(r.get(r.size()-1));	//
-    			r.remove(r.size()-1);	//
+    			n.add(r.get(0));
+    			r.remove(0);
     		}
     	}
     	
@@ -98,7 +91,19 @@ public class Deck {
     }
 
     //TODO task 6
+    /**
+     * loads the card front images
+     * 
+     * @param path
+     */
     public void loadCardImages(String path) {
-
+    	for(AbstractCard card: cards) {
+    		try {
+				card.setFrontImage(path);
+			} catch (ResourceNotFoundException e) {
+				System.out.println("loading card image failed");
+				e.printStackTrace();
+			}
+    	}
     }
 }
