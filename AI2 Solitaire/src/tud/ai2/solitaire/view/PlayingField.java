@@ -3,6 +3,7 @@ package tud.ai2.solitaire.view;
 import tud.ai2.solitaire.Launch;
 import tud.ai2.solitaire.model.cards.*;
 import tud.ai2.solitaire.util.HighscoreListener;
+import tud.ai2.solitaire.util.ResetListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -127,8 +128,11 @@ public class PlayingField extends JFrame {
 
         //TODO task 7
         //----------------------- Reset Button Aufgabe -----------------------------------------------------------------------
-
-
+        resetButton = new JButton("Reset");
+        resetButton.setBounds(0 + OFFSET.x,55 + OFFSET.y,140, 25);
+        resetButton.setFont(new Font("pixelated", Font.BOLD, 28));
+        contentPane.add(resetButton);
+        resetButton.addActionListener(new ResetListener());
         //----------------------- Ende Reset Button Aufgabe -------------------------------------------------------------------
 
 
@@ -348,3 +352,4 @@ public class PlayingField extends JFrame {
         new PlayingField("Solitaire");
     }
 }
+
