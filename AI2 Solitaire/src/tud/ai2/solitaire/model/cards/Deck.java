@@ -49,37 +49,43 @@ public class Deck {
     	List<AbstractCard> l = new ArrayList<AbstractCard>(); 
     	List<AbstractCard> r = new ArrayList<AbstractCard>(); 
     	
-    	cutPoint = (int) ((Math.random() * 11) + 22); //cutPoint ist die erste Karte des rechten Stapels
+    	cutPoint = (int) ((Math.random() * 11) + 21); //cutPoint ist die erste Karte des rechten Stapels
     	
     	l = cards.subList(0 , cutPoint - 1 );
-    	r = cards.subList(cutPoint , 52); 
+    	r = cards.subList(cutPoint , 51); 
     	
-    	riffleMerge(l, r);
+    	riffleMerge(l, r); // neue Variable?
     	
     	//cards = n; 
     	}
     }
 
     //TODO task 2b)
+    /**
+     * Methode, welche aus zwei Stapeln einen neuen Stapel mischt 
+     * @param left linker Stapel
+     * @param right rechter Stapel 
+     * @return n neuer gemischter Stapel 
+     */
     public static List<AbstractCard> riffleMerge(List<AbstractCard> left, List<AbstractCard> right) {
     	List<AbstractCard> l = left;
-    	List<AbstractCard> r = right;
+    	List<AbstractCard> r = right; //dynamisch?
     	
-    	List<AbstractCard> n = new ArrayList<AbstractCard>(52);
+    	List<AbstractCard> n = new ArrayList<AbstractCard>(52); 
     	
-    	for (int i = 0; i < n.size() ; i++) {
+    	while (!l.isEmpty() || !r.isEmpty()) {
     		
     		Random mn = new Random();
-    		double z = mn.nextDouble();
-    		double cl = (l.size()/(l.size() + r.size()));
+    		double z = mn.nextDouble(); //Zufallsvariable 
+    		double cl = (l.size()/(l.size() + r.size())); //Chance die unterste Karte des linken Stapels auszuwaehlen //Exception?? //zusaetliche Bedingung??
     		
-    		if (z <= cl) {
-    			n.add(l.get(0));
-    			l.remove(0);
+    		if (z < cl) {
+    			n.add(l.get(l.size()-1)); // 
+    			l.remove(l.size()-1);	//
     		}
     		else {
-    			n.add(r.get(0));
-    			r.remove(0);
+    			n.add(r.get(r.size()-1));	//
+    			r.remove(r.size()-1);	//
     		}
     	}
     	
