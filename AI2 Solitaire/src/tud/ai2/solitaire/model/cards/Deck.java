@@ -25,83 +25,81 @@ import static tud.ai2.solitaire.util.Const.CARD_COUNT;
 public class Deck {
 
     public int cutPoint ;
-    private List<AbstractCard> cards;
+    private List<AbstractCard> cards = new ArrayList<AbstractCard>();
     private static final Random rand = new Random();
-
-    //TODO task 2a)
+    
     /**
-     * 
+     * Constructs a card Deck
      */
+    //TODO task 2a)
     public Deck() {
-
     	for (Suit s : Suit.values()) {
     		for (CardValue w : CardValue.values()) {
+    			//System.out.println(s + "----" + w);
     			cards.add(new Card(s,w)); 
     		}
     	}
     
     }
     
+    /**
+     * Mixes the cards. For every iteration it devides the cards and then riffle merges them.
+     * @param iterations
+     */
     //TODO task 2c)
     public void riffle(int iterations) {
     	
     	for (int i = 0; i < iterations; i++) {
-    	List<AbstractCard> l = new ArrayList<AbstractCard>(); 
-    	List<AbstractCard> r = new ArrayList<AbstractCard>(); 
+    		List<AbstractCard> l = new ArrayList<AbstractCard>(); 
+    		List<AbstractCard> r = new ArrayList<AbstractCard>(); 
     	
-    	cutPoint = (int) ((Math.random() * 11) + 21); //cutPoint ist die erste Karte des rechten Stapels
+    		cutPoint = (int) ((rand.nextDouble() * 11) + 21); //cutPoint the first card of the right list of cards
     	
-    	l = cards.subList(0 , cutPoint - 1 );
-    	r = cards.subList(cutPoint , 51); 
-    	
-    	riffleMerge(l, r); // neue Variable?
-    	
-    	//cards = n; 
+    		l = cards.subList(0 , cutPoint - 1);
+    		r = cards.subList(cutPoint , 51); 
+    		cards = riffleMerge(l, r);
     	}
     }
-
-    //TODO task 2b)
+    
     /**
-     * Methode, welche aus zwei Stapeln einen neuen Stapel mischt 
-     * @param left linker Stapel
-     * @param right rechter Stapel 
-     * @return n neuer gemischter Stapel 
+     * Merges the left list with the right list to create the new merged list of abstract cards
+     * @param left the left list
+     * @param right the right list
+     * @return the new merged list
      */
+    //TODO task 2b)
     public static List<AbstractCard> riffleMerge(List<AbstractCard> left, List<AbstractCard> right) {
     	List<AbstractCard> l = left;
-    	List<AbstractCard> r = right; //dynamisch?
+    	List<AbstractCard> r = right;
     	
-    	List<AbstractCard> n = new ArrayList<AbstractCard>(52); 
+    	List<AbstractCard> mergedList = new ArrayList<AbstractCard>(); //new Arraylist of merged cards
     	
     	while (!l.isEmpty() || !r.isEmpty()) {
     		
-    		Random mn = new Random();
-    		double z = mn.nextDouble(); //Zufallsvariable 
-    		double cl = (l.size()/(l.size() + r.size())); //Chance die unterste Karte des linken Stapels auszuwaehlen //Exception?? //zusaetliche Bedingung??
+    		double chanceLeft = (l.size()/(l.size() + r.size())); //chance left
     		
-    		if (z < cl) {
-    			n.add(l.get(l.size()-1)); // 
-    			l.remove(l.size()-1);	//
+    		if (rand.nextDouble() < chanceLeft) {
+    			mergedList.add(l.get(l.size()-1));
+    			l.remove(l.size()-1);
     		}
     		else {
-    			n.add(r.get(r.size()-1));	//
-    			r.remove(r.size()-1);	//
+    			mergedList.add(r.get(r.size()-1));
+    			r.remove(r.size()-1);
     		}
     	}
-    	
-        return n;
+    			
+        return mergedList;
     }
 
     public List<AbstractCard> getCards() {
         return cards;
     }
 
-    //TODO task 6
     /**
-     * loads the card front images
-     * 
-     * @param path
+     * loads the card front images found in a given path
+     * @param path the path
      */
+    //TODO task 6
     public void loadCardImages(String path) {
     	for(AbstractCard card: cards) {
     		try {
