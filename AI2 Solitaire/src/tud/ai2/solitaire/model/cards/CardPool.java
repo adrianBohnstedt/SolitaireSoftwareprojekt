@@ -31,7 +31,7 @@ public class CardPool extends AbstractCardPool {
 	public AbstractCard drawStackClicked() {
 		if(!getDrawStack().isEmpty())
 			getWasteStack().push(getDrawStack().pop());
-		return null;
+		return null; //if there is no card left
 	}
 	/**
 	 * Moves all cards from the waste Stack back to the draw stack in the correct order
@@ -56,4 +56,3 @@ public class CardPool extends AbstractCardPool {
 
 
 }
-
