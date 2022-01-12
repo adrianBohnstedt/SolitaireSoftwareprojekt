@@ -7,7 +7,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import tud.ai2.solitaire.exceptions.ResourceNotFoundException;
-
+/**
+ * Describes a Card
+ * @author Maximilian Mitschke, Adrian Bohnstedt
+ * @version 1.0
+ */
 public class Card extends AbstractCard{
 	
 	private static final long serialVersionUID = 1L;
