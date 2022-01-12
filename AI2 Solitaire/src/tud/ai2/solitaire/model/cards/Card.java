@@ -10,62 +10,82 @@ import tud.ai2.solitaire.exceptions.ResourceNotFoundException;
 
 public class Card extends AbstractCard{
 	
+	private static final long serialVersionUID = 1L;
 	private Suit suit; 
 	private CardValue cardValue; 
-	private boolean direction; 
+	private boolean revealed; 
 	private BufferedImage frontImage;
 	
 	/**
-	 * 
-	 * @param suit
-	 * @param cardValue
+	 * Constructs a card
+	 * @param suit The suit of a card
+	 * @param cardValue The value of a card
 	 */
-	
-public Card (Suit suit, CardValue cardValue) {
+	public Card (Suit suit, CardValue cardValue) {
 		
 		super();
 		this.suit = suit; 
 		this.cardValue = cardValue; 
-		direction = false;
+		revealed = false;
 		
 	}
 	
-	
+	/**
+	 * Gets the Suit of the card like heart
+	 * @return the suit
+	 */
 	@Override
 	public Suit getSuit() {
 		
 		return suit;
 	}
+	
+	/**
+	 * Gets the Value of a card
+	 * @return the value
+	 */
 	@Override
 	public CardValue getValue() {
 		
 		return cardValue;
 	}
+	
+	/**
+	 * Flips the card card. Changes the revealed value of a card in any case and then returns the revealed value.
+	 * @return the value  of revealed after flipping the card
+	 */
 	@Override
 	public boolean flip() {
-		if (direction == false) {
+		if (revealed == false) {
+			revealed = true;
 			return true;
 		} else {
-		return false;
+			revealed = false;
+			return false;
 		}
 	}	
-	public boolean getDirection() {
-		
-		return direction;
-	}
+	
+	/**
+	 * Checks if the card is revealed
+	 * @return true if the card is revealed
+	 */
 	@Override
 	public boolean isRevealed() {
-		// TODO Auto-generated method stub
-		return false;
+		return revealed;
 	}
+	
+	/**
+	 * Sets the value revealed of a card
+	 * @param revealed the new revealed value
+	 */
 	@Override
 	public void setRevealed(boolean revealed) {
 		
-		direction = revealed; 
+		this.revealed = revealed; 
 	}
+	
 	/**
 	 * Sets the front image to the image found in the base path file
-	 * 
 	 * @param basePath the basePath of the file
 	 */
 	@Override
@@ -79,11 +99,22 @@ public Card (Suit suit, CardValue cardValue) {
 		}
 		
 	}
+	
+	/**
+	 * Gets the front Image of a card
+	 * @returns the BufferedImage front Image of a card
+	 */
 	@Override
 	public BufferedImage getFrontImage() {
 		
 		return frontImage;
-	} 
+	}
+	
+	/**
+	 * Compares the card with another object
+	 * @param o the other object
+	 * @return if the value and suit are the same
+	 */
 	@Override
 	public boolean equals(Object o) {
 		
@@ -96,12 +127,6 @@ public Card (Suit suit, CardValue cardValue) {
 		Card c = (Card) o; 
 		
 		return (this.suit == c.getSuit()) && (this.cardValue == c.getValue());
-		
-		//if (this.getSuit() = o.getSuit() && this.getValue() == o.getValue()) {
-		//	return true;
-		//} else {
-		//	return false; 
-		//	
 		
 		
 	}
