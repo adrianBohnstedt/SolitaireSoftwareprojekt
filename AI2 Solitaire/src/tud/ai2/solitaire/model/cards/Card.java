@@ -3,6 +3,8 @@ package tud.ai2.solitaire.model.cards;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
@@ -94,7 +96,9 @@ public class Card extends AbstractCard{
 	 */
 	@Override
 	public void setFrontImage(String basePath) throws ResourceNotFoundException {
-		File basePathFile = new File(basePath + "/" + suit + "/" + cardValue + ".png");
+		//File basePathFile = new File(basePath + "/" + suit + "/" + cardValue + ".png");
+		Path path = Paths.get(basePath + "/" + suit + "/" + cardValue + ".png");
+		File basePathFile = path.toFile();
 		//setting the front image
 		try {
 			frontImage = ImageIO.read(basePathFile);
