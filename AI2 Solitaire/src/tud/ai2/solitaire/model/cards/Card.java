@@ -31,7 +31,7 @@ public class Card extends AbstractCard{
 	}
 	
 	/**
-	 * Gets the Suit of the card like heart
+	 * Gets the Suit of the card like hearts, clubs, diamonds or spades
 	 * @return the suit
 	 */
 	@Override
