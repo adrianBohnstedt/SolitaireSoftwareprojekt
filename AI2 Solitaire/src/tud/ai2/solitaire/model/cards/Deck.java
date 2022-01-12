@@ -105,7 +105,7 @@ public class Deck {
     		try {
 				card.setFrontImage(path);
 			} catch (ResourceNotFoundException e) {
-				System.out.println("loading card image failed");
+				System.out.println("ResourceNotFoundException thrown from setFrontImage() method");
 				e.printStackTrace();
 			}
     	}
