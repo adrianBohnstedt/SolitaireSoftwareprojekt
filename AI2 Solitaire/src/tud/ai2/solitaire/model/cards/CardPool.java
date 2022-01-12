@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * Implements the card pool with a draw stack and a waste stack
  * 
- * @author Adrian Bohnstedt
+ * @author Adrian Bohnstedt, Maximilian Mitschke
  * @version 1.0
  */
 public class CardPool extends AbstractCardPool {
