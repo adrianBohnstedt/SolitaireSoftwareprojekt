@@ -26,7 +26,9 @@ import java.util.List;
 
 
 public class HighScoreFrame extends JFrame{
-    private static boolean showHighscore = false;
+	
+	private static final long serialVersionUID = 1L;
+	private static boolean showHighscore = false;
     private List<HighscoreEntry> highScoreEntries;
     private JTable highscoreTable;
     private static DefaultTableModel model;
@@ -38,7 +40,7 @@ public class HighScoreFrame extends JFrame{
     private static final String[] colums = {"Name", "Time", "Score"};
 
     /**
-     * constructor for HighScoreFrame
+     * Constructor for HighScoreFrame. Expants JFrame constructor.
      */
     public HighScoreFrame() {
         super("Highscore");
@@ -47,7 +49,7 @@ public class HighScoreFrame extends JFrame{
     }
 
     /**
-     * method to create a HighscoreFrame
+     * mMethod to create a HighscoreFrame
      */
     public void createWindow() {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
