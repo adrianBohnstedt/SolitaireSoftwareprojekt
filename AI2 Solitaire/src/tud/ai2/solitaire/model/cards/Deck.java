@@ -38,8 +38,8 @@ public class Deck {
     			//System.out.println(s + "----" + w);
     			cards.add(new Card(s,w)); 
     		}
+    		
     	}
-    
     }
     
     /**
@@ -50,13 +50,13 @@ public class Deck {
     public void riffle(int iterations) {
     	
     	for (int i = 0; i < iterations; i++) {
-    		List<AbstractCard> l = new ArrayList<AbstractCard>(); 
-    		List<AbstractCard> r = new ArrayList<AbstractCard>(); 
+    		//List<AbstractCard> l = new ArrayList<AbstractCard>(); 
+    		//List<AbstractCard> r = new ArrayList<AbstractCard>(); 
     	
     		cutPoint = (int) ((rand.nextDouble() * 11) + 21); //cutPoint the first card of the right list of cards
     	
-    		l = cards.subList(0 , cutPoint - 1);
-    		r = cards.subList(cutPoint , 51); 
+    		List<AbstractCard> l = new ArrayList <>(cards.subList(0 , cutPoint));
+    		List<AbstractCard> r = new ArrayList <>(cards.subList(cutPoint , cards.size())); 
     		cards = riffleMerge(l, r);
     	}
     }
@@ -76,15 +76,15 @@ public class Deck {
     	
     	while (!l.isEmpty() || !r.isEmpty()) {
     		
-    		double chanceLeft = (l.size()/(l.size() + r.size())); //chance left
-    		
+    		double chanceLeft = ((double)l.size()/((double)l.size() + (double)r.size())); //chance left
+    		System.out.println(chanceLeft);
     		if (rand.nextDouble() < chanceLeft) {
-    			mergedList.add(l.get(l.size()-1));
-    			l.remove(l.size()-1);
+    			mergedList.add(l.get(0));
+    			l.remove(0);
     		}
     		else {
-    			mergedList.add(r.get(r.size()-1));
-    			r.remove(r.size()-1);
+    			mergedList.add(r.get(0));
+    			r.remove(0);
     		}
     	}
     			
