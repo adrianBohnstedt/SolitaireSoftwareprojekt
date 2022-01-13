@@ -29,9 +29,13 @@ public class CardPool extends AbstractCardPool {
      */
 	@Override
 	public AbstractCard drawStackClicked() {
-		if(!getDrawStack().isEmpty())
-			getWasteStack().push(getDrawStack().pop());
-		return null; //if there is no card left
+		
+		if(!getDrawStack().isEmpty()) {
+			AbstractCard k = getDrawStack().pop();
+			getWasteStack().push(k);
+			return k;
+		}
+		else return null; //if there is no card left
 	}
 	/**
 	 * Moves all cards from the waste Stack back to the draw stack in the correct order
