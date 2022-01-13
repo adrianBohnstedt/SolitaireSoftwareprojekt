@@ -96,16 +96,16 @@ public class Card extends AbstractCard{
 	 */
 	@Override
 	public void setFrontImage(String basePath) throws ResourceNotFoundException {
-		//File basePathFile = new File(basePath + "/" + suit + "/" + cardValue + ".png");
-		Path path = Paths.get(basePath + "/" + suit + "/" + cardValue + ".png");
-		File basePathFile = path.toFile();
+		File basePathFile = new File(basePath , suit.string().toLowerCase() + "/" + cardValue.string().toLowerCase() + ".png");
+		//Path path = Paths.get(basePath + "/" + suit + "/" + cardValue + ".png");
+		//File basePathFile = path.toFile();
 		//setting the front image
 		try {
 			frontImage = ImageIO.read(basePathFile);
 		} catch (IOException e) {
 			throw new ResourceNotFoundException(basePath);
 		}
-		
+	
 	}
 	
 	/**
@@ -126,6 +126,9 @@ public class Card extends AbstractCard{
 	@Override
 	public boolean equals(Object o) {
 		
+		if (o == null) {
+			return false;
+		}
 		if (o == this) {
 			return true; 
 		}
