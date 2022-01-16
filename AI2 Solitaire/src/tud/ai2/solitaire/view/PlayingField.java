@@ -129,7 +129,7 @@ public class PlayingField extends JFrame {
         //TODO task 7
         //----------------------- Reset Button Aufgabe -----------------------------------------------------------------------
         resetButton = new JButton("Reset");
-        resetButton.setBounds(0 + OFFSET.x,55 + OFFSET.y,140, 25);
+        resetButton.setBounds(155 + OFFSET.x,400 + OFFSET.y,140, 25);
         resetButton.setFont(new Font("pixelated", Font.BOLD, 28));
         contentPane.add(resetButton);
         resetButton.addActionListener(new ResetListener());
