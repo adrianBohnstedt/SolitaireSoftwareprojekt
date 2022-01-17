@@ -18,7 +18,7 @@ public class CardStack extends AbstractCardStack {
  */
     public void push(AbstractCard cc) {
     	boolean pushed = false; //if the card got already pushed onto the stack
-    	while(pushed == false) {
+    	while(pushed == false && !isFull()) {
     		for(int i=0; i<MAX_STACK;i++) {
         		if(a[i] == null) {
         			a[i] = cc;
