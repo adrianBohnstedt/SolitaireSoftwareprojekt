@@ -132,7 +132,7 @@ public class PlayingField extends JFrame {
         resetButton.setBounds(155 + OFFSET.x,400 + OFFSET.y,140, 25);
         resetButton.setFont(new Font("pixelated", Font.BOLD, 28));
         contentPane.add(resetButton);
-        resetButton.addActionListener(new ResetListener());
+        resetButton.addActionListener(a -> reset());
         //----------------------- Ende Reset Button Aufgabe -------------------------------------------------------------------
 
 
@@ -352,4 +352,3 @@ public class PlayingField extends JFrame {
         new PlayingField("Solitaire");
     }
 }
-
