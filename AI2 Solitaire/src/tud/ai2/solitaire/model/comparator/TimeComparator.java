@@ -22,21 +22,20 @@ public class TimeComparator implements Comparator<HighscoreEntry>{
 		//sort time by null
 		if(o1.getTime() == null)
 			return 1;
-		if(o2.getTime() == null)
-			return -1;
+		else if(o2.getTime() == null)
+			return 1;
 		//sort by time
 		if(o1.getTime() < o2.getTime())
-			return 1;
+			return -1; //-1
 		if(o1.getTime() > o2.getTime())
-			return -1;
+			return 1; //1
 		//sort name by null
 		if(o1.getName() == null)
 			return 1;
 		else if(o2.getName() == null)
-			return -1;
+			return 1;
 		//sort by name
-		return o1.getName().compareToIgnoreCase(o2.getName());
+		return o2.getName().compareToIgnoreCase(o1.getName());
 	}
 
 }
-
