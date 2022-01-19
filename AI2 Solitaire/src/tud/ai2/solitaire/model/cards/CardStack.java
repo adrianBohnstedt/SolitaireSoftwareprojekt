@@ -10,21 +10,19 @@ public class CardStack extends AbstractCardStack {
 
     private static int MAX_STACK = 13; //maximum size of a stack 
     private AbstractCard[] a = new AbstractCard [MAX_STACK]; //new Array with the type AbstractCard, with a size of 13 
-    
+  
    
 /**
  * Pushes an abstract card onto the stack and does nothing if stack is already full
  * @param cc the abstract card that gets pushed onto the stack
  */
-    public void push(AbstractCard cc) {
+   public void push (AbstractCard cc) {
     	boolean pushed = false; //if the card got already pushed onto the stack
-    	while(pushed == false && !isFull()) {
-    		for(int i=0; i<MAX_STACK;i++) {
-        		if(a[i] == null) {
-        			a[i] = cc;
-        			pushed = true;
-        		}
-        	}
+    	for (int i = 0; i < MAX_STACK; i++) {
+    		if (a[i] == null && pushed == false) {
+    			a[i] = cc;
+    			pushed = true;
+    		}
     	}
     }
 
