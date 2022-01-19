@@ -23,20 +23,19 @@ public class ScoreComparator implements Comparator<HighscoreEntry>{
 		if(o1.getScore() == null)
 			return 1;
 		else if(o2.getScore() == null)
-			return -1;
+			return 1; //1
 		//sort by score
 		if(o1.getScore() > o2.getScore())
-			return 1;
+			return -1; //-1
 		if(o1.getScore() < o2.getScore())
-			return -1;
+			return 1; //absteigend
 		//sort name by null
 		if(o1.getName() == null)
 			return 1;
 		else if(o2.getName() == null)
-			return -1;
+			return 1; //1
 		//sort by name
-		return o1.getName().compareToIgnoreCase(o2.getName());
+		return o2.getName().compareToIgnoreCase(o1.getName());
 	}
 
 }
-
